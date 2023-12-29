@@ -1,6 +1,7 @@
 /* eslint-disable */
 import { Button, Grid } from '@mui/material';
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import { Joblist } from 'src/sections/job';
 import Shimmer from 'src/sections/job/Shimmer';
@@ -43,7 +44,8 @@ const Job = () => {
         <label className="font-serif font-light text-base"> Search Job </label>
         <input
           type="text"
-          className="border 2 mx-16 rounded-md h-9"
+          placeholder="empty search give all result"
+          className="border 2 mx-16 rounded-md h-9 w-56"
           value={search}
           onChange={(e) => {
             setSearch(e.target.value);
@@ -65,6 +67,11 @@ const Job = () => {
           {' '}
           Find{' '}
         </Button>
+        <Link to={'/'}>
+          <Button variant="contained" style={{ marginLeft: '20px' }}>
+            Back
+          </Button>
+        </Link>
       </nav>
       <Grid
         container
