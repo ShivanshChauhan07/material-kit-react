@@ -1,12 +1,11 @@
-import React, { useEffect } from 'react';
-
-// space
-
-import { Helmet } from 'react-helmet-async';
+/* eslint-disable */
+import { Button, Grid } from '@mui/material';
+import React, { useState, useEffect } from 'react';
 
 import { Joblist } from 'src/sections/job';
 
 const Job = () => {
+  const [result, setResult] = useState([]);
   const dataFetch = async () => {
     const url = 'https://jsearch.p.rapidapi.com/search?query=all&page=1&num_pages=1';
     const options = {
@@ -19,8 +18,9 @@ const Job = () => {
 
     try {
       const response = await fetch(url, options);
-      const result = await response.json();
-      console.log(result);
+      const data = await response.json();
+      setResult(data.data);
+      // console.log(result);
     } catch (error) {
       console.error(error);
     }
@@ -30,15 +30,24 @@ const Job = () => {
     dataFetch();
   }, []);
 
-  return (
+  console.log(result);
+
+  return result.length === 0 ? (
+    <h1>Loading</h1>
+  ) : (
     <>
-      <div>
-        <Helmet>
-          <title> Login | Minimal UI </title>
-        </Helmet>
-        <h1>Hello</h1>
-      </div>
-      <Joblist />
+      <nav className="bg-slate-100 p-6">
+        <label className="font-serif font-light text-base"> Search Job </label>
+        <input type="text" className="border 2 mx-16 rounded-md h-9" />
+        <Button variant="contained"> Find </Button>
+      </nav>
+      <Grid container spacing={{ md: 2 }}>
+        {result.map((card, index) => (
+          <Grid item xs={3} sm={4} md={3}>
+            <Joblist key={index} data={card} />
+          </Grid>
+        ))}
+      </Grid>
     </>
   );
 };
