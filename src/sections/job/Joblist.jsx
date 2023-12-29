@@ -5,7 +5,7 @@ import { Button, Card, CardActions, CardContent, CardMedia, Typography } from '@
 import '../../global.css';
 
 const Joblist = ({ data }) => {
-  const { employer_name, employer_logo, job_title, job_city } = data;
+  const { employer_name, employer_logo, job_title, job_city, job_description } = data;
   return (
     <>
       <div>
@@ -28,10 +28,8 @@ const Joblist = ({ data }) => {
             >
               {job_title}
             </Typography>
-            <Typography variant="body2">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium ut quasi
-              consequatur debitis ducimus id quia similique quis optio, aliquid cumque facilis ad a
-              pariatur at adipisci officia nesciunt vitae.
+            <Typography variant="body2" className="line-clamp-6">
+              {job_description}
             </Typography>
           </CardContent>
           <CardActions style={{ display: 'flex', justifyContent: 'space-between' }}>

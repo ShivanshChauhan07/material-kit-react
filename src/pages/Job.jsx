@@ -3,11 +3,14 @@ import { Button, Grid } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 
 import { Joblist } from 'src/sections/job';
+import Shimmer from 'src/sections/job/Shimmer';
 
 const Job = () => {
   const [result, setResult] = useState([]);
+  const [search, setSearch] = useState('');
+  const [filtered, setFiltered] = useState([]);
   const dataFetch = async () => {
-    const url = 'https://jsearch.p.rapidapi.com/search?query=all&page=1&num_pages=1';
+    const url = 'https://jsearch.p.rapidapi.com/search?query=all&page=2&num_pages=2';
     const options = {
       method: 'GET',
       headers: {
@@ -20,6 +23,7 @@ const Job = () => {
       const response = await fetch(url, options);
       const data = await response.json();
       setResult(data.data);
+      setFiltered(data.data);
       // console.log(result);
     } catch (error) {
       console.error(error);
@@ -29,20 +33,46 @@ const Job = () => {
   useEffect(() => {
     dataFetch();
   }, []);
-
-  console.log(result);
+  console.log(filtered);
 
   return result.length === 0 ? (
-    <h1>Loading</h1>
+    <Shimmer />
   ) : (
     <>
       <nav className="bg-slate-100 p-6">
         <label className="font-serif font-light text-base"> Search Job </label>
-        <input type="text" className="border 2 mx-16 rounded-md h-9" />
-        <Button variant="contained"> Find </Button>
+        <input
+          type="text"
+          className="border 2 mx-16 rounded-md h-9"
+          value={search}
+          onChange={(e) => {
+            setSearch(e.target.value);
+            console.log(search);
+          }}
+        />
+        <Button
+          variant="contained"
+          onClick={() => {
+            const data = result.filter((singleItem) =>
+              search.toLowerCase() === ''
+                ? result
+                : singleItem.job_title.toLowerCase().includes(search)
+            );
+            setFiltered(data);
+            console.log(data);
+          }}
+        >
+          {' '}
+          Find{' '}
+        </Button>
       </nav>
-      <Grid container spacing={{ md: 2 }}>
-        {result.map((card, index) => (
+      <Grid
+        container
+        spacing={{ md: 2, sm: 6 }}
+        columns={{ xs: 4, sm: 8, md: 12 }}
+        style={{ marginTop: '10px' }}
+      >
+        {filtered.map((card, index) => (
           <Grid item xs={3} sm={4} md={3}>
             <Joblist key={index} data={card} />
           </Grid>

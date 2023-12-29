@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import SvgColor from 'src/components/svg-color';
 
 // ----------------------------------------------------------------------
@@ -40,7 +41,7 @@ const navConfig = [
   {
     title: 'Job',
     path: '/job',
-    icon: icon('ic_disabled'),
+    icon: <i class="fa-solid fa-suitcase"></i>,
   },
 ];
 
