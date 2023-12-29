@@ -41,7 +41,7 @@ const Job = () => {
   ) : (
     <>
       <nav className="bg-slate-100 p-6">
-        <label className="font-serif font-light text-base"> Search Job </label>
+        <label className="font-serif font-light text-base"> Search Job Title </label>
         <input
           type="text"
           placeholder="empty search give all result"
