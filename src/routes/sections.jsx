@@ -9,6 +9,7 @@ export const UserPage = lazy(() => import('src/pages/user'));
 export const LoginPage = lazy(() => import('src/pages/login'));
 export const ProductsPage = lazy(() => import('src/pages/products'));
 export const Page404 = lazy(() => import('src/pages/page-not-found'));
+export const Job = lazy(() => import('src/pages/Job'));
 
 // ----------------------------------------------------------------------
 
@@ -36,6 +37,10 @@ export default function Router() {
     {
       path: '404',
       element: <Page404 />,
+    },
+    {
+      path: '/job',
+      element: <Job />,
     },
     {
       path: '*',
