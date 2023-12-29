@@ -15,7 +15,7 @@ const Job = () => {
     const options = {
       method: 'GET',
       headers: {
-        'X-RapidAPI-Key': '6e58962aa0msha9db3073001fc16p15acbfjsn51adeea9c845',
+        'X-RapidAPI-Key': 'a4936f8409msh02ec4fa3c083eedp18ea6ajsnfcecfb813a18',
         'X-RapidAPI-Host': 'jsearch.p.rapidapi.com',
       },
     };
@@ -41,7 +41,7 @@ const Job = () => {
   ) : (
     <>
       <nav className="bg-slate-100 p-6">
-        <label className="font-serif font-light text-base"> Search Job Title </label>
+        <label className="font-serif font-light text-base"> Search Job Title</label>
         <input
           type="text"
           placeholder="empty search give all result"
